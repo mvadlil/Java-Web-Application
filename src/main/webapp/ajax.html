@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>AJAX HTML</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>AJAX EXAMPLE</div>
+        <p id="demo"></p>
+        <script>
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var myObj = JSON.parse(this.responseText);
+                    var personText = "";
+                    for (var i = 0; i < myObj.length; i++) {
+                        personText += myObj[i].name + ",";
+                    }
+                    document.getElementById("demo").innerHTML = personText;
+                }
+            };
+            xmlhttp.open("GET", "persons", true);
+            xmlhttp.send();
+        </script>
+    </body>
+</html>
